@@ -18,7 +18,7 @@ pipeline {
             agent any
             steps {
                 sh '''
-                    sudo docker build -t Krahjotdaan/django_demo:${GIT_COMMIT}
+                    docker build -t Krahjotdaan/django_demo:${GIT_COMMIT}
                 '''
             }
         }
