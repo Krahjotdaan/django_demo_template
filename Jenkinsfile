@@ -23,6 +23,7 @@ pipeline {
             }
         }
         stage('push') {
+            agent any
             steps {
                 withCredentials([usernamePassword(credentialsId: 'docker_creds', 
                 usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
