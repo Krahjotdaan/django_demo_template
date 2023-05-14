@@ -26,7 +26,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'docker_creds', 
             usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
-                sh 'docker push iorp/django_demo:${GIT_COMMIT}'
+                sh 'docker push krahjotdaan/django_demo:${GIT_COMMIT}'
             }
         }
     }
