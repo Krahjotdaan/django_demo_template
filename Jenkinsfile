@@ -18,7 +18,7 @@ pipeline {
             agent any
             steps {
                 sh '''
-                    docker build . -t krahjotdaan/django_demo:${GIT_COMMIT} -t krahjotdaan/django_demo:latest
+                    docker build . -t krahjotdaan/django_demo_template:${GIT_COMMIT} -t krahjotdaan/django_demo_template:latest
                 '''
             }
         }
@@ -26,7 +26,7 @@ pipeline {
             withCredentials([usernamePassword(credentialsId: 'docker_creds', 
             usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
                 sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
-                sh 'docker push krahjotdaan/django_demo:${GIT_COMMIT}'
+                sh 'docker push krahjotdaan/django_demo_template:${GIT_COMMIT}'
             }
         }
     }
