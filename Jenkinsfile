@@ -2,9 +2,9 @@ pipeline {
     agent none
     stages {
         stage('tests') {
-        agent {
-            docker {image 'python:3.10'}
-        }
+            agent {
+                docker {image 'python:3.10'}
+            }
             steps {
                 sh '''
                     python3 -m venv .venv 
@@ -20,6 +20,13 @@ pipeline {
                 sh '''
                     docker build . -t krahjotdaan/django_demo:${GIT_COMMIT} -t krahjotdaan/django_demo:latest
                 '''
+            }
+        }
+        stage('push') {
+            withCredentials([usernamePassword(credentialsId: 'docker_creds', 
+            usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                sh 'docker login -u ${USERNAME} -p ${PASSWORD}'
+                sh 'docker push iorp/django_demo:${GIT_COMMIT}'
             }
         }
     }
