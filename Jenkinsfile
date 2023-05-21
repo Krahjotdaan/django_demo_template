@@ -32,5 +32,16 @@ pipeline {
                 }
             }
         }
+        stage("deploy") {
+            agent any
+            steps {
+                withCredentials([sshUserPrivateKey(credentialsId: 'deploy_server', keyFileVariable: 'KEY_FILE')]) {
+                    sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@http://devops.io12.me:8089/ mkdir -p ~${WORKSPACE}'
+                    sh 'scp -o StrictHostKeyChecking=no -i ${KEY_FILE} docker-compose.yaml ${USERNAME}http://devops.io12.me:8089/:~${WORKSPACE}'
+                    sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@http://devops.io12.me:8089/docker-compose -f ~${WORKSPACE}/docker-compose.yaml pull'
+                    sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@http://devops.io12.me:8089/ docker-compose -f ~${WORKSPACE}/docker-compose.yaml up -d'
+                }
+            }
+        }
     }
 }
