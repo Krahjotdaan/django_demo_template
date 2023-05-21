@@ -1,0 +1,7 @@
+version: "3"
+
+services:
+  backend:
+    image: krahjotdaan/django_demo_template:latest
+    ports:
+      - "8089:80"
