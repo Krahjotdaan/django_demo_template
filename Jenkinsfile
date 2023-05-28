@@ -42,7 +42,7 @@ pipeline {
                     sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@devops.io12.me docker-compose -f ~${WORKSPACE}/docker-compose.yaml pull'
                     sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@devops.io12.me docker-compose -f ~${WORKSPACE}/docker-compose.yaml up -d'
                     sh 'scp -o StrictHostKeyChecking=no -i ${KEY_FILE} ostapenko.devops.io12.me.conf ${USERNAME}@devops.io12.me:~/nginx/'
-                    sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@devops.io12.me sudo certbot --nginx --non-interactive --agree-tos -m abc@yandex.ru -d ostapenko.devops.io12.me -d www.ostapenko.devops.io12.me'
+                    sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@devops.io12.me sudo certbot --nginx --non-interactive --agree-tos -m abc@yandex.ru -d ostapenko.devops.io12.me'
                     sh 'ssh -o StrictHostKeyChecking=no -i ${KEY_FILE} ${USERNAME}@devops.io12.me sudo systemctl reload nginx'
                 }
             }
