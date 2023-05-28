@@ -25,7 +25,7 @@ SECRET_KEY = '_a^+z&bf-g+q*a5rj89durzgdi5unxw+g2oei55^87wv-p+e7!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['devops.io12.me', '127.0.0.0']
+ALLOWED_HOSTS = ['devops.io12.me', '127.0.0.1', 'ostapenko.devops.io12.me', 'www.ostapenko.devops.io12.me']
 
 
 # Application definition
